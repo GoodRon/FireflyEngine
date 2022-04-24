@@ -53,6 +53,7 @@ bool StateMachine::resetState(int stateId) {
 	}
 
 	_states[stateId]->deinit();
+	return true;
 }
 
 int StateMachine::currentState() const {

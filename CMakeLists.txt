@@ -21,7 +21,6 @@ endif()
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_definitions(-Wall) 
 add_definitions(-D_REENTRANT)
 
 find_package(SDL2 REQUIRED)

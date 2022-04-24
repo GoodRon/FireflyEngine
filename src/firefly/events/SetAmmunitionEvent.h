@@ -23,8 +23,8 @@ public:
 
 private:
 	const EntityID _id;
-	const double _weaponId;
-	const double _rounds;
+	const int _weaponId;
+	const int _rounds;
 };
 
 }
