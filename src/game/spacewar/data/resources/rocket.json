@@ -1,0 +1,73 @@
+{
+	"name": "Rocket",
+	"components": [
+		{
+			"name": "Visual",
+			"zIndex": 1,
+			"isVisible": true,
+			"currentState": 0,
+			"states": [
+				{
+					"state": 0,
+					"texture": "resources/rocket2.png",
+					"isLooped": true,
+					"frameWidth": 32,
+					"frameHeight": 32,
+					"frameDuration": 0,
+					"frameRow": 0,
+					"frameCol": 0,
+					"frameAmount": 1
+				},
+				{
+					"state": 3,
+					"texture": "resources/explosion.png",
+					"isLooped": false,
+					"frameWidth": 100,
+					"frameHeight": 100,
+					"frameDuration": 33,
+					"frameRow": 0,
+					"frameCol": 0,
+					"frameAmount": 44
+				}
+			]
+		},
+		{
+			"name": "Position",
+			"x": 0.0,
+			"y": 0.0,
+			"centerX": 16.0,
+			"centerY": 16.0,
+			"width": 32.0,
+			"height": 32.0,
+			"scale": 0.6,
+			"direction": 0.0
+		},
+		{
+			"name": "Velocity",
+			"speed": 40.0,
+			"speedDirection": 0.0,
+			"acceleration": 30.0,
+			"accelerationDirection": 0.0,
+			"isConstantAcceleration": true,
+			"maxSpeed": 600.0
+		},
+		{
+			"name": "RoundCollidable",
+			"isDestructable": true,
+			"collidableRadius": 4.0
+		},
+		{
+			"name": "Lifetime",
+			"lifetimeMs": 6000
+		},
+		{
+			"name": "State",
+			"current": 1,
+			"previous": 0
+		},
+		{
+			"name": "Lives",
+			"maxLives": 1
+		}
+	]
+}

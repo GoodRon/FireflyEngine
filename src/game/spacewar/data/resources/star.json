@@ -1,0 +1,60 @@
+{
+	"name": "Star",
+	"components": [
+		{
+			"name": "Visual",
+			"zIndex": 0,
+			"isVisible": true,
+			"currentState": 0,
+			"states": [
+				{
+					"state": 0,
+					"texture": "resources/star.png",
+					"isLooped": true,
+					"frameWidth": 64,
+					"frameHeight": 64,
+					"frameDuration": 100,
+					"frameRow": 0,
+					"frameCol": 0,
+					"frameAmount": 4
+				}
+			]
+		},
+		{
+			"name": "Position",
+			"x": 0.0,
+			"y": 0.0,
+			"centerX": 32.0,
+			"centerY": 32.0,
+			"width": 64.0,
+			"height": 64.0,
+			"scale": 0.625,
+			"direction": 0.0
+		},
+		{
+			"name": "Velocity",
+			"speed": 0.0,
+			"speedDirection": 0.0,
+			"acceleration": 0.0,
+			"accelerationDirection": 0.0,
+			"isConstantAcceleration": false,
+			"maxSpeed": 0.0
+		},
+		{
+			"name": "Gravity",
+			"hasGravity": false,
+			"emitGravity": true,
+			"mass": 150000000.0
+		},
+		{
+			"name": "RoundCollidable",
+			"isDestructable": false,
+			"collidableRadius": 15.0
+		},
+		{
+			"name": "State",
+			"current": 1,
+			"previous": 0
+		}
+	]
+}

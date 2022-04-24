@@ -1,0 +1,112 @@
+{
+	"name": "Player_2",
+	"components": [
+		{
+			"name": "Visual",
+			"zIndex": 2,
+			"isVisible": true,
+			"currentState": 0,
+			"states": [
+				{
+					"state": 0,
+					"texture": "resources/player2.png",
+					"isLooped": true,
+					"frameWidth": 66,
+					"frameHeight": 88,
+					"frameDuration": 0,
+					"frameRow": 0,
+					"frameCol": 0,
+					"frameAmount": 1
+				},
+				{
+					"state": 1,
+					"texture": "resources/player2.png",
+					"isLooped": true,
+					"frameWidth": 66,
+					"frameHeight": 88,
+					"frameDuration": 0,
+					"frameRow": 0,
+					"frameCol": 1,
+					"frameAmount": 1
+				},
+				{
+					"state": 3,
+					"texture": "resources/explosion.png",
+					"isLooped": false,
+					"frameWidth": 100,
+					"frameHeight": 100,
+					"frameDuration": 33,
+					"frameRow": 0,
+					"frameCol": 0,
+					"frameAmount": 44
+				}
+			]
+		},
+		{
+			"name": "Position",
+			"x": 0.0,
+			"y": 0.0,
+			"centerX": 33.0,
+			"centerY": 32.0,
+			"width": 66.0,
+			"height": 88.0,
+			"scale": 0.5,
+			"direction": 270.0
+		},
+		{
+			"name": "Velocity",
+			"speed": 0.0,
+			"speedDirection": 0.0,
+			"acceleration": 0.0,
+			"accelerationDirection": 0.0,
+			"isConstantAcceleration": false,
+			"maxSpeed": 600.0
+		},
+		{
+			"name": "Player",
+			"playerId": 2,
+			"playerName": "The Wedge"
+		},
+		{
+			"name": "Lives",
+			"maxLives": 10
+		},
+		{
+			"name": "RoundCollidable",
+			"isDestructable": true,
+			"collidableRadius": 14.0
+		},
+		{
+			"name": "Gravity",
+			"hasGravity": false,
+			"emitGravity": false,
+			"mass": 0.0
+		},
+		{
+			"name": "State",
+			"current": 0,
+			"previous": 0
+		},
+		{
+			"name": "Ammunition",
+			"weapons": [
+				{	
+					"weaponId": 0,
+					"projectile": "Rocket",
+					"rounds": 0,
+					"maxRounds": 25,
+					"cooldownTimeMs": 300
+				}
+			]
+		},
+		{
+			"name": "ShipControls"
+		},
+		{
+			"name": "Fuel",
+			"current": 100.0,
+			"max": 100.0,
+			"consumption": 3.0
+		}
+	]
+}

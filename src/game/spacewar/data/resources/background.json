@@ -1,0 +1,35 @@
+{
+	"name": "Background",
+	"components": [
+		{
+			"name": "Visual",
+			"zIndex": -1,
+			"isVisible": true,
+			"currentState": 0,
+			"states": [
+				{
+					"state": 0,
+					"texture": "resources/background.png",
+					"isLooped": false,
+					"frameWidth": 1664,
+					"frameHeight": 1149,
+					"frameDuration": 0,
+					"frameRow": 0,
+					"frameCol": 0,
+					"frameAmount": 1
+				}
+			]
+		},
+		{
+			"name": "Position",
+			"x": 0.0,
+			"y": 0.0,
+			"centerX": 0.0,
+			"centerY": 0.0,
+			"width": 1664.0,
+			"height": 1149.0,
+			"scale": 1,
+			"direction": 0.0
+		}
+	]
+}
