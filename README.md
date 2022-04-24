@@ -13,7 +13,7 @@ Required dependencies:
 
 Download the development versions of the libraries (I used these: [SDL2-devel-2.0.20-VC](https://github.com/libsdl-org/SDL/releases/download/release-2.0.20/SDL2-devel-2.0.20-VC.zip), [SDL2_image-devel-2.0.5-VC](https://www.libsdl.org/projects/SDL_image/release/SDL2_image-devel-2.0.5-VC.zip), [SDL2_ttf-devel-2.0.18-VC](https://github.com/libsdl-org/SDL_ttf/releases/download/release-2.0.18/SDL2_ttf-devel-2.0.18-VC.zip)).
 
-Go to the project directory and execute the folowing commands:
+Go to the project directory and execute the following commands:
 ```
 mkdir build
 cd build
