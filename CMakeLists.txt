@@ -8,7 +8,6 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/jsoncpp)
 configure_file(Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
 include(FindDoxygen)
 if(DOXYGEN_FOUND)
-	# для ручного запуска, CI делает через плагин
 	add_custom_target(
 		doc
 		COMMENT "Doxygen documentation" DEPENDS
