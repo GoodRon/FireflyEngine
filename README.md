@@ -17,7 +17,7 @@ Go to the project directory and execute the folowing commands:
 ```
 mkdir build
 cd build
-cmake .. -DCMAKE_ISNTALL_PREFIX=../install -DSDL2_PATH="path to the SDL2 directory" -DSDL2_TTF_PATH="path to the SDL2_TTF directory"  -DSDL2_IMAGE_PATH="path to the SDL2_Image directory" 
+cmake .. -DCMAKE_ISNTALL_PREFIX=../install -DSDL2_PATH="path to the SDL2 directory" -DSDL2_TTF_PATH="path to the SDL2_TTF directory" -DSDL2_IMAGE_PATH="path to the SDL2_Image directory" 
 cmake --build . --config Release
 cmake --install .
 ```
