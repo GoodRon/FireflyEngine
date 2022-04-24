@@ -83,12 +83,6 @@ void PositioningSystem::updatePosition(firefly::EntityID id,
 	position->x = x;
 	position->y = y;
 	position->direction = direction;
-
-	const auto velocity = entity->getComponent<firefly::Velocity>();
-	if (!velocity) {
-		return;
-	}
-	processPosition(position, velocity);
 }
 
 void PositioningSystem::processPosition(
