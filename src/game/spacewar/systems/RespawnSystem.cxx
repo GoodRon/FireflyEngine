@@ -16,6 +16,7 @@
 #include <firefly/components/Fuel.h>
 #include <firefly/components/Ammunition.h>
 #include <firefly/components/Player.h>
+#include <firefly/components/Hyperspace.h>
 
 #include <firefly/events/KillEvent.h>
 #include <firefly/events/StateEvent.h>
@@ -152,6 +153,12 @@ void RespawnSystem::respawnEntity(firefly::EntityID id) const {
 	double x = 0;
 	double y = 0;
 	randomScreenPosition(rect.w, rect.h, x, y);
+
+	// TODO improve
+	const auto hyperspace = entity->getComponent<firefly::Hyperspace>();
+	if (hyperspace) {
+		hyperspace->timepoint = 0;
+	}
 
 	const auto eventManager = getEngine()->getEventManager();
 
