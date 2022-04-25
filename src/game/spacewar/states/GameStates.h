@@ -11,7 +11,9 @@ namespace spacewar {
 enum GameState {
 	Menu = 0,
 	Main,
-    GameOver
+    GameOver,
+    TheNeedleWon,
+    TheWedgeWon
 };
 
 }

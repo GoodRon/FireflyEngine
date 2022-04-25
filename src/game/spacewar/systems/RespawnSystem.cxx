@@ -107,6 +107,25 @@ void RespawnSystem::killEntity(firefly::EntityID id) const {
 	if (!player) {
 		return;
 	}
+
+	// TODO improve
+	if (player->playerId == 1) {
+		std::shared_ptr<firefly::IEvent> event(
+		new firefly::GameStateEvent(GameState::TheWedgeWon));
+
+		const auto eventManager = getEngine()->getEventManager();
+		eventManager->registerEvent(std::move(event));
+		return;
+	}
+
+	if (player->playerId == 2) {
+		std::shared_ptr<firefly::IEvent> event(
+		new firefly::GameStateEvent(GameState::TheNeedleWon));
+
+		const auto eventManager = getEngine()->getEventManager();
+		eventManager->registerEvent(std::move(event));
+		return;
+	}
 	
 	std::shared_ptr<firefly::IEvent> event(
 		new firefly::GameStateEvent(GameState::GameOver));

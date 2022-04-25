@@ -16,6 +16,8 @@ add_executable(spacewar WIN32
 	states/MainState.cxx
 	states/MenuState.cxx
 	states/GameOverState.cxx
+	states/TheNeedleWonState.cxx
+	states/TheWedgeWonState.cxx
 	systems/ShipControlSystem.cxx
 	systems/FuelSystem.cxx
 	systems/RespawnSystem.cxx
