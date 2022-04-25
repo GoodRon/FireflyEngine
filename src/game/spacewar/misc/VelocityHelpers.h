@@ -15,7 +15,7 @@ void movePoint(double& x, double& y,
 
 void addVector(double& magnitude, double& direction,
 	double& magnitudeX, double magnitudeY,
-	double deltaMagnitude, double deltaAirection);
+	double deltaMagnitude, double deltaDirection);
 
 void calculateVector(
 	double magnitudeX, double magnitudeY,

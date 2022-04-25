@@ -190,9 +190,9 @@ firefly::TexturePointer PlayerUISystem::drawHyperspace(
 
 	if (elapsedMs <	hyperspace->cooldownMs) {
 		const uint64_t remainingS = 
-			static_cast<uint64_t>((hyperspace->cooldownMs - elapsedMs) / 1000.0) + 1;
+			static_cast<uint64_t>(
+				(hyperspace->cooldownMs - elapsedMs) / 1000.0) + 1;
 
-		//stream << "Charging ";
 		stream << remainingS;
 		stream << " sec";
 	} else {
