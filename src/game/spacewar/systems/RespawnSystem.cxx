@@ -26,6 +26,7 @@
 #include <firefly/events/GameStateEvent.h>
 
 #include "ObjectStates.h"
+#include "PlayerId.h"
 #include "states/GameStates.h"
 
 namespace spacewar {
@@ -109,7 +110,7 @@ void RespawnSystem::killEntity(firefly::EntityID id) const {
 	}
 
 	// TODO improve
-	if (player->playerId == 1) {
+	if (player->playerId == PlayerId::TheNeedle) {
 		std::shared_ptr<firefly::IEvent> event(
 		new firefly::GameStateEvent(GameState::TheWedgeWon));
 
@@ -118,7 +119,7 @@ void RespawnSystem::killEntity(firefly::EntityID id) const {
 		return;
 	}
 
-	if (player->playerId == 2) {
+	if (player->playerId == PlayerId::TheWedge) {
 		std::shared_ptr<firefly::IEvent> event(
 		new firefly::GameStateEvent(GameState::TheNeedleWon));
 
