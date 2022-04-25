@@ -20,6 +20,7 @@
 #include <firefly/components/Velocity.h>
 #include <firefly/components/Gravity.h>
 #include <firefly/components/Lives.h>
+#include <firefly/components/Hyperspace.h>
 #include <firefly/components/RoundCollidable.h>
 
 #include "ObjectStates.h"
@@ -159,11 +160,16 @@ void StateSystem::switchState(
 
 	const auto stateComponent = entity->getComponent<firefly::State>();
 	const auto visualComponent = entity->getComponent<firefly::Visual>();
+	const auto hyperspaceComponent = entity->getComponent<firefly::Hyperspace>();
 	if (!stateComponent || !visualComponent) {
 		return;
 	}
 
 	if (stateComponent->current == state) {
+		return;
+	}
+
+	if (state == ObjectState::Hyperspace && !hyperspaceComponent) {
 		return;
 	}
 
@@ -187,6 +193,10 @@ void StateSystem::switchState(
 
 	switch (state) {
 	case ObjectState::Destroyed:
+		setEntityReactiveness(entity, false);
+		visualComponent->isVisible = false;
+		break;
+
 	case ObjectState::Hyperspace:
 		setEntityReactiveness(entity, false);
 		visualComponent->isVisible = false;
@@ -213,22 +223,26 @@ void StateSystem::updateHyperspace(
 
 	const auto state = entity->getComponent<firefly::State>();
 	const auto position = entity->getComponent<firefly::Position>();
-	if (!state || !position) {
+	const auto hyperspace = entity->getComponent<firefly::Hyperspace>();
+	if (!state || !position || !hyperspace) {
 		return;
 	}
 
-	// TODO read from a config
-	constexpr uint64_t hyperspaceTimeMs = 2000;
-	if ((SDL_GetTicks64() - state->timepoint) < hyperspaceTimeMs) {
+	const auto timepoint = SDL_GetTicks64();
+
+	if ((timepoint - state->timepoint) 
+		< hyperspace->hyperspaceTimeMs) {
 		// NOTE we are still in hyperspace
 		return;
 	}
 
-	// TODO read from a config
-	constexpr int chanceOfMulfunction = 5;
-	if (randomInt(0, 100) <= chanceOfMulfunction) {
-		switchState(entity, ObjectState::Exploading);
-		return;
+	hyperspace->timepoint = timepoint;
+
+	if (hyperspace->chanceOfMulfunction > 0) {
+		if (randomInt(0, 100) <= hyperspace->chanceOfMulfunction) {
+			switchState(entity, ObjectState::Exploading);
+			return;
+		}
 	}
 
 	const auto renderer = getEngine()->getRenderer();

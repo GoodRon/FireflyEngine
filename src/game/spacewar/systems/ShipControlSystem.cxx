@@ -21,6 +21,7 @@
 #include <firefly/components/Lifetime.h>
 #include <firefly/components/ShipControls.h>
 #include <firefly/components/Fuel.h>
+#include <firefly/components/Hyperspace.h>
 
 #include "ObjectStates.h"
 #include "WeaponId.h"
@@ -43,6 +44,7 @@ namespace spacewar {
 		addRequiredComponent(firefly::State::ComponentName);
 		addRequiredComponent(firefly::Ammunition::ComponentName);
 		addRequiredComponent(firefly::Fuel::ComponentName);
+		addRequiredComponent(firefly::Hyperspace::ComponentName);
 	}
 
 	ShipControlSystem::~ShipControlSystem() {
@@ -340,6 +342,14 @@ namespace spacewar {
 
 		if (stateComponent->current != ObjectState::Idle &&
 			stateComponent->current != ObjectState::Moving) {
+			return;
+		}
+
+		const auto hyperspaceComponent = 
+			entity->getComponent<firefly::Hyperspace>();
+
+		if ((SDL_GetTicks64() - hyperspaceComponent->timepoint) <
+			hyperspaceComponent->cooldownMs) {
 			return;
 		}
 

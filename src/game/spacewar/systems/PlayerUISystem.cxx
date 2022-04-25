@@ -10,6 +10,7 @@
 #include <firefly/components/Ammunition.h>
 #include <firefly/components/Lives.h>
 #include <firefly/components/Fuel.h>
+#include <firefly/components/Hyperspace.h>
 
 #include "misc/UIHelpers.h"
 
@@ -53,6 +54,11 @@ void PlayerUISystem::drawPlayerUI(
 		labels.push_front(std::move(drawAmmunition(ammunition)));
 	}
 
+	const auto hyperspace = entity->getComponent<firefly::Hyperspace>();
+	if (hyperspace) {
+		labels.push_front(std::move(drawHyperspace(hyperspace)));
+	}
+
 	const auto fuel = entity->getComponent<firefly::Fuel>();
 	if (fuel) {
 		labels.push_front(std::move(drawFuel(fuel)));
@@ -65,7 +71,6 @@ void PlayerUISystem::drawPlayerUI(
 
 	labels.push_front(std::move(drawPlayer(player)));
 
-	constexpr int heightSpace = 0;
 	SDL_Rect uiRect{0, 0, 0, 0};
 
 	for (auto& label: labels) {
@@ -74,7 +79,7 @@ void PlayerUISystem::drawPlayerUI(
 		if (textureRect.w > uiRect.w) {
 			uiRect.w = textureRect.w;
 		}
-		uiRect.h += textureRect.h + heightSpace;
+		uiRect.h += textureRect.h;
 	}
 
 	const auto screenRect = _renderer->getViewport();
@@ -93,7 +98,7 @@ void PlayerUISystem::drawPlayerUI(
 		// TODO move from here
 		_renderer->drawTexture(label, &textureRect, &destinationRect);
 
-		offsetY += textureRect.h + heightSpace;
+		offsetY += textureRect.h;
 	}
 }
 
@@ -168,5 +173,36 @@ firefly::TexturePointer PlayerUISystem::drawAmmunition(
 	const SDL_Color color{0xf1, 0xf1, 0xf1, 255};
 	return _renderer->drawText(stream.str(), fontSize, color);
 }
+
+
+firefly::TexturePointer PlayerUISystem::drawHyperspace(
+	firefly::Hyperspace* hyperspace) const {
+	
+	if (!hyperspace) {
+		return nullptr;
+	}
+
+	std::stringstream stream;
+	stream.precision(3);
+	stream << "Hyperdrive: ";
+
+	const uint64_t elapsedMs = SDL_GetTicks64() - hyperspace->timepoint;
+
+	if (elapsedMs <	hyperspace->cooldownMs) {
+		const uint64_t remainingS = 
+			static_cast<uint64_t>((hyperspace->cooldownMs - elapsedMs) / 1000.0) + 1;
+
+		//stream << "Charging ";
+		stream << remainingS;
+		stream << " sec";
+	} else {
+		stream << "Ready";
+	}
+
+	const int fontSize = 20;
+	const SDL_Color color{0xf1, 0xf1, 0xf1, 255};
+	return _renderer->drawText(stream.str(), fontSize, color);
+}
+
 
 }

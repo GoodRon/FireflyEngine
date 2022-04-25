@@ -107,6 +107,13 @@
 			"current": 100.0,
 			"max": 100.0,
 			"consumption": 3.0
+		},
+		{
+			"name": "Hyperspace",
+			"hyperspaceTimeMs": 2000,
+			"cooldownMs": 5000,
+			"chanceOfMulfunction": 5,
+			"timepoint:": 0
 		}
 	]
 }

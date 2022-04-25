@@ -17,6 +17,7 @@ namespace firefly {
 	class Lives;
 	class Fuel;
 	class Ammunition;
+	class Hyperspace;
 	using TexturePointer = std::shared_ptr<SDL_Texture>;
 }
 
@@ -44,6 +45,8 @@ private:
 		firefly::Ammunition* ammunition) const;
 	firefly::TexturePointer drawFuel(
 		firefly::Fuel* fuel) const;
+	firefly::TexturePointer drawHyperspace(
+		firefly::Hyperspace* hyperspace) const;
 
 private:
 	firefly::Renderer* const _renderer;

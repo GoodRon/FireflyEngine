@@ -21,6 +21,7 @@
 #include <firefly/components/RoundCollidable.h>
 #include <firefly/components/ShipControls.h>
 #include <firefly/components/Fuel.h>
+#include <firefly/components/Hyperspace.h>
 
 #include "rapidjson/document.h"
 
@@ -166,6 +167,12 @@ private:
 			firefly::Entity* entity,
 			rapidjson::Value& document)->bool {
 			return buildFuelComponent(entity, document);
+		};
+
+		_componentBuilders[firefly::Hyperspace::ComponentName] = [this](
+			firefly::Entity* entity,
+			rapidjson::Value& document)->bool {
+			return buildHyperspaceComponent(entity, document);
 		};
 	}
 
@@ -392,6 +399,23 @@ private:
 		component->consumption = document["consumption"].GetDouble();
 
 		entity->addComponent(firefly::Fuel::ComponentName, 
+			std::move(component));
+		return true;
+	}
+
+	bool buildHyperspaceComponent(
+		firefly::Entity* entity,
+		rapidjson::Value& document) const {
+
+		std::unique_ptr<firefly::Hyperspace> component(
+			new firefly::Hyperspace);
+
+		component->hyperspaceTimeMs = document["hyperspaceTimeMs"].GetUint64();
+		component->cooldownMs = document["cooldownMs"].GetUint64();
+		component->chanceOfMulfunction = document["chanceOfMulfunction"].GetUint64();
+		component->timepoint = document["timepoint"].GetUint64();
+
+		entity->addComponent(firefly::Hyperspace::ComponentName, 
 			std::move(component));
 		return true;
 	}
