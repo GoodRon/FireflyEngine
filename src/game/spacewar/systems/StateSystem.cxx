@@ -236,11 +236,16 @@ void StateSystem::updateHyperspace(
 		return;
 	}
 
+	const auto eventManager = getEngine()->getEventManager();
+	std::shared_ptr<firefly::IEvent> event;
+
 	hyperspace->timepoint = timepoint;
 
 	if (hyperspace->chanceOfMulfunction > 0) {
 		if (randomInt(0, 100) <= hyperspace->chanceOfMulfunction) {
-			switchState(entity, ObjectState::Exploading);
+			event.reset(new firefly::StateEvent(
+				entity->getId(), ObjectState::Exploading));
+			eventManager->registerEvent(std::move(event));
 			return;
 		}
 	}
@@ -252,20 +257,17 @@ void StateSystem::updateHyperspace(
 	double y = 0;
 	randomScreenPosition(rect.w, rect.h, x, y);
 
-	const auto eventManager = getEngine()->getEventManager();
-	std::shared_ptr<firefly::IEvent> event;
-
 	event.reset(new firefly::SetSpeedEvent(
 		entity->getId(), 0.0, 0.0));
-
 	eventManager->registerEvent(std::move(event));
 
 	event.reset(new firefly::PositionEvent(
 		entity->getId(), x, y, position->direction));
-
 	eventManager->registerEvent(std::move(event));
 
-	switchState(entity, ObjectState::Idle);
+	event.reset(new firefly::StateEvent(
+		entity->getId(), ObjectState::Idle));
+	eventManager->registerEvent(std::move(event));
 }
 
 void StateSystem::updateExploading(
@@ -284,13 +286,15 @@ void StateSystem::updateExploading(
 		}
 	}
 
+	const auto eventManager = getEngine()->getEventManager();
+
 	std::shared_ptr<firefly::IEvent> event(new firefly::KillEvent(
 		entity->getId()));
-
-	const auto eventManager = getEngine()->getEventManager();
 	eventManager->registerEvent(std::move(event));
 
-	switchState(entity, ObjectState::Destroyed);
+	event.reset(new firefly::StateEvent(
+		entity->getId(), ObjectState::Destroyed));
+	eventManager->registerEvent(std::move(event));
 }
 
 }
