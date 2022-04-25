@@ -9,8 +9,8 @@
 namespace spacewar {
 
 enum PlayerId {
-	TheNeedle = 0,
-    TheWedge = 1
+	TheNeedle = 1,
+    TheWedge = 2
 };
 
 }
